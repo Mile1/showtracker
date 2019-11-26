@@ -1,15 +1,12 @@
 package hr.miran.seriesapp.controller;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
@@ -88,15 +85,12 @@ public class MainController {
 	private Timer timer; 
 	private Connection conn;
 	
-	private String accBackground;
-	private String accAiredColor;
-	private String accInterval;
 	private AccountInfo accountInfo;
 	private boolean accInfoExists;
 	
 	public MainController(String loggedUser) {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/miran/seriesapp/javafx/main.fxml"));
+        
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/miran/seriesapp/javafx/main.fxml"));
         fxmlLoader.setController(this);
         this.loggedUser = loggedUser;
         this.conn = jdbcConnect.connectToUserDb();;
@@ -118,14 +112,11 @@ public class MainController {
 			ex.printStackTrace();
 		}
     }
-	
-	
 
 	@FXML
 	public void initialize(){
 		
 		showsTable.setPlaceholder(new Label("Searching for shows, please wait a moment."));
-		
 		showNameColumn.setCellValueFactory(new PropertyValueFactory<SeriesOld, String>("showName"));
 		episodeNameColumn.setCellValueFactory(new PropertyValueFactory<SeriesOld, String>("episodeName"));
 		seasonColumn.setCellValueFactory(new PropertyValueFactory<SeriesOld, Integer>("seasonNum"));
@@ -153,11 +144,7 @@ public class MainController {
 //			        		Date episodeDate = null;
 			        		
 							try {
-								
-//								System.out.println("Original Date " + date);
-								
 								if (accInfoExists) {
-								
 									if (date != null && !date.contains("N/A") && !date.equals("")) {
 										setText(date);
 										Date episodeDate = dateFormat.parse(date);
@@ -182,9 +169,7 @@ public class MainController {
 							} catch (ParseException e) {
 								e.printStackTrace();
 							}
-
 			            }
-					
 				};
 				
 			}
@@ -253,8 +238,7 @@ public class MainController {
 		
 	}
 	
-	private void showTaggedShows() throws SQLException { 
-		
+	private void showTaggedShows() throws SQLException {
 		scene.setCursor(Cursor.WAIT);
 		Task<Void> task = new Task<Void>() {
 		    @Override
@@ -333,24 +317,20 @@ public class MainController {
 		 
 	}
 	
-	
-	
 	private ArrayList<SeriesOld> getSeriesOld() throws SQLException {
-//		System.out.println(new Date());
+		
 		Connection conn = jdbcConnect.connectToUserDb();;
 		ArrayList<SeriesOld> seriesList = new ArrayList<SeriesOld>();
 		ArrayList<TaggedShow> tagedShowList = new ArrayList<TaggedShow>();
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
-//		System.out.println(dateFormat.format(currentDate));
-		
+
 		tagedShowList.addAll(dbm.getTaggedShows(conn));
 		try {
 
 			TheTVDBApi tvdbApi = new TheTVDBApi("26B8BE6FAC673EE0");
 			
-			int countPass =0;
 			for (TaggedShow taggedShow : tagedShowList ) {
 				
 //				System.out.println("countPass " + countPass++ + " " + new Date());
@@ -358,7 +338,6 @@ public class MainController {
 				Series currentShow = dbm.getSeriesByIdFromDB(conn , taggedShow.getShowId().toString());
 				
 				if (currentShow == null) {
-//					System.out.println("API currentshow " +   taggedShow.getShowId() );
 					currentShow =  tvdbApi.getSeries(taggedShow.getShowId().toString(), "en"); 
 				}
 				
@@ -452,7 +431,7 @@ public class MainController {
 	}
 	
 	private ArrayList<SeriesOld> getSeries() throws SQLException {
-//		System.out.println(new Date());
+		
 		Connection conn = jdbcConnect.connectToUserDb();;
 		ArrayList<SeriesOld> seriesList = new ArrayList<SeriesOld>();
 		ArrayList<TaggedShow> tagedShowList = new ArrayList<TaggedShow>();
@@ -573,7 +552,7 @@ public class MainController {
 		
 	}
 
-	public void markEpisodeAsWatched() {
+	public void markEpisodeAsWatched() {	
 		
 		if (showsTable.getSelectionModel().getSelectedItem() != null) {
 		
@@ -636,6 +615,7 @@ public class MainController {
 	}
 	
 	public void unmarkEpisodeAsWatched() {
+		
 		if (showsTable.getSelectionModel().getSelectedItem() != null) {
 		
 			SeriesOld tvShow = showsTable.getSelectionModel().getSelectedItem();
@@ -683,6 +663,7 @@ public class MainController {
 	}
 	
 	public void showSeriesInfo() {
+		
 		if (showsTable.getSelectionModel().getSelectedItem() != null) {
 		
 			try { 
@@ -695,9 +676,7 @@ public class MainController {
 						loader.<TvShowAboutController>getController();
 				controller.setScene(getStage().getScene());
 				controller.initData(showsTable.getSelectionModel().getSelectedItem().getShowid());
-				
-	//			BorderPane tvShows = (BorderPane) FXMLLoader.load(getClass().getResource("/hr/miran/seriesapp/javafx/tvShowAbout.fxml"));
-	//			TvShowAboutController tvShowsAbout= new TvShowAboutController(showsTable.getSelectionModel().getSelectedItem().getShowid());
+
 				root.setStyle("");
 				setCenterPane(tvShows);
 				
@@ -709,6 +688,7 @@ public class MainController {
 	
 	
 	public void addTvShows() { 
+		
 		try { 
 			turnOffTimer(timer);
 //			BorderPane tvShows = (BorderPane) FXMLLoader.load(getClass().getResource("/hr/miran/seriesapp/javafx/addTvShows.fxml")); 
@@ -721,8 +701,6 @@ public class MainController {
 					loader.<AddTvShowsController>getController();
 			controller.initData(root);
 			
-//			BorderPane tvShows = (BorderPane) FXMLLoader.load(getClass().getResource("/hr/miran/seriesapp/javafx/tvShowAbout.fxml"));
-//			TvShowAboutController tvShowsAbout= new TvShowAboutController(showsTable.getSelectionModel().getSelectedItem().getShowid());
 			root.setStyle("");
 			setCenterPane(tvShows);
 			
@@ -733,12 +711,12 @@ public class MainController {
 	}
 	
 	public void redirectHome(Stage stage, String name) {
+		
 		this.stage = stage;
 		stage.setResizable(false);
         stage.setTitle("Show Tracker");
         stage.setScene(scene);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("showTrackLogo.png")));
-//        welcomeText.setText("Hello " + name + "! You are welcome.");
         stage.show();
     }
 	
@@ -757,6 +735,7 @@ public class MainController {
 	}
 	
 	private Episode getNextPossibleUnwatchedEpisode(TheTVDBApi tvdbApi, String showId, Integer seasonNum, Integer episodeNum, String language, Connection conn) {
+		
 		Episode nextEpisode = null;
 		boolean searchNextSeason = false;
 
@@ -789,8 +768,7 @@ public class MainController {
 						}
 					}
 				} catch (TvDbException e) {
-					
-	//				e.printStackTrace();
+//					e.printStackTrace();
 				}  
 				
 			}
@@ -804,6 +782,7 @@ public class MainController {
 	}
 	
 	public void updateDatabaseRatings() throws TvDbException {
+		
 		ArrayList<String> showList = new ArrayList<>();
 		TheTVDBApi tvdbApi = new TheTVDBApi("26B8BE6FAC673EE0");
 //		Connection conn2 = jdbcConnect.connectToUserDb();
@@ -821,39 +800,21 @@ public class MainController {
 				System.err.println("Tough Luck");
 			}
 			
-			if (countShows % 100 == 0) {
-//				System.out.println("Updated Shows " + countShows);
-			}
 			countShows++;
 			
-			if (seriesObject.getSeriesName().length() !=0) {
-//			removeTheseShowsFromList.add(potentialNewShow);	
+			if (seriesObject.getSeriesName().length() !=0) {	
 				dbm.updateRatingOnTvSeriesTable(conn, seriesObject);
 			}
 		}
-		
-//		jdbcConnect.closeConnectionToDatabase(conn2);
 	} 
 	
 	public void updateDatabaseWithNewSeries() throws TvDbException {
-//		
-//		int stopScript = 1;
-//		
-//		if (stopScript == 1) {
-//			return;
-//		}
-//		
+		
 		ArrayList<String> newShows =  new ArrayList<>();
 		TreeSet<String> removeTheseShowsFromList =  new TreeSet<>();
-		
 		ArrayList<String> existingShows = new ArrayList<>();
-		
-//		Connection conn2 = jdbcConnect.connectToUserDb();
 		existingShows.addAll(dbm.getListOfShows(conn)); 
-		 
-		
 		TheTVDBApi tvdbApi = new TheTVDBApi("26B8BE6FAC673EE0");
-//		TvdbParser tvdbparse = new Tvsdb
 		ArrayList<SeriesUpdate> seriesUpdates = new ArrayList<>();
 		
 		try {
@@ -886,28 +847,19 @@ public class MainController {
 			
 		}
 		
-//		System.out.println("Broj Serija s updatea: " + newShows.size());
-//		System.out.println("Broj postojecih Serija : " + existingShows.size());
-		
-		    	int count = 0;
-		    	ArrayList<String> updateSeasonsForIds = new ArrayList<>();
-				updateSeasonsForIds = dbm.getSeasonUpdatesForShows(conn);
-//		    	System.out.println("Shows For season update: " + updateSeasonsForIds.size());
-		    	
-		    	for (String showId : updateSeasonsForIds) {
-					count++;
-					try {
-						dbm.updateTvSeasons(conn, tvdbApi.getAllEpisodes(showId, "en"));
-						
-					} catch (TvDbException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+		int count = 0;
+		ArrayList<String> updateSeasonsForIds = new ArrayList<>();
+		updateSeasonsForIds = dbm.getSeasonUpdatesForShows(conn);
+
+		for (String showId : updateSeasonsForIds) {
+			count++;
+			try {
+				dbm.updateTvSeasons(conn, tvdbApi.getAllEpisodes(showId, "en"));
 					
-					if (count % 10 == 0) {
-//						System.out.println("Rec Number"+ count);
-					}
-				}
+			} catch (TvDbException e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 	
