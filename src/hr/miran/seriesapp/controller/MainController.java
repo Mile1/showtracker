@@ -95,13 +95,7 @@ public class MainController {
 	private boolean accInfoExists;
 	
 	public MainController(String loggedUser) {
-		
-//		 BasicDataSource ds = new BasicDataSource();
-//		 ds.setDriverClassName("oracle.jdbc.driver.OracleDriver")
-//		 ds.setUsername("scott");
-//		 ds.setPassword("tiger");
-//		 ds.setUrl(connectURI);
-		
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hr/miran/seriesapp/javafx/main.fxml"));
         fxmlLoader.setController(this);
         this.loggedUser = loggedUser;
@@ -333,13 +327,8 @@ public class MainController {
 			
 			ObservableList<SeriesOld> seriesObservableList = FXCollections.observableArrayList(seriesList);
 			
-			
-			
 			showsTable.getItems().clear();
-			showsTable.setItems(seriesObservableList);
-
-			
-			
+			showsTable.setItems(seriesObservableList);	
 		}
 		 
 	}
@@ -440,11 +429,8 @@ public class MainController {
 							}						
 						}
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (Exception ee) {
-	//					System.out.println("episodeAirDate" + episodeAirDate);
-//						System.out.println("episodeDate" + episodeDate);
 						ee.printStackTrace();
 					}
 					
@@ -454,10 +440,7 @@ public class MainController {
 				}
 
 			}
-			
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
@@ -630,14 +613,6 @@ public class MainController {
 					return;
 				}			
 			} 
-//			else if (tvShow.getEpisodeDate().toString().equals("N/A") && ) {
-//				DialogFX alertOk = new DialogFX(Type.INFO);
-//				alertOk.setTitleText("No information about next season");
-//				alertOk.setMessage("There is currently no information about next season!");
-//				alertOk.showDialog();
-//				return;
-//			}
-			
 			
 			if (dbm.checkIfEpisodeExistsInDb(conn, tvShow)) {
 				dbm.updateTaggedShowWatchStatus(conn, loggedUserId, tvShow, 1);
@@ -688,12 +663,7 @@ public class MainController {
 	public void showMostPopularTvShows() {
 		
 		try {
-			turnOffTimer(timer);
-//			BorderPane tvShows = (BorderPane) FXMLLoader.load(getClass().getResource("/hr/miran/seriesapp/javafx/tvShows.fxml")); 
-////			tvShows.setStyle("-fx-background-image: url('http://thetvdb.com/banners/posters/277165-8.jpg');-fx-background-repeat: no-repeat;-fx-background-size: 170 200;");
-//			root.setStyle("");
-//			setCenterPane(tvShows);
-			
+			turnOffTimer(timer);			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/hr/miran/seriesapp/javafx/tvShows.fxml"));
 			
 			BorderPane popularTvShows = (BorderPane) loader.load();
@@ -702,10 +672,6 @@ public class MainController {
 //			controller.setScene(getStage().getScene());
 			controller.setBorderPane(root);
 			controller.initData();
-			
-//			BorderPane tvShows = (BorderPane) FXMLLoader.load(getClass().getResource("/hr/miran/seriesapp/javafx/tvShowAbout.fxml"));
-//			TvShowAboutController tvShowsAbout= new TvShowAboutController(showsTable.getSelectionModel().getSelectedItem().getShowid());
-			
 			
 			root.setStyle("");
 			setCenterPane(popularTvShows);
@@ -1038,7 +1004,6 @@ public class MainController {
 	}
 	
 	public void exit() {
-//		stage.close();
 		Platform.exit();
 		System.exit(0);
 	} 
