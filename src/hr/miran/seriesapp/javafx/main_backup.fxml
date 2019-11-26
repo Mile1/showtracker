@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <center>
+    <GridPane>
+      <children>
+        <Button mnemonicParsing="false" onAction="#showMostPopularTvShows" prefHeight="150.0" prefWidth="150.0" styleClass="buttonFirst" text="Most Popular Shows" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+          <stylesheets>
+            <URL value="@../main/application.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#addTvShows" prefHeight="150.0" prefWidth="150.0" styleClass="buttonSecond" text="Add Show" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+          <stylesheets>
+            <URL value="@../main/application.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" styleClass="buttonThird" text="Button" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <stylesheets>
+            <URL value="@../main/application.css" />
+          </stylesheets>
+        </Button>
+        <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" styleClass="buttonFourth" text="Button" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+          <stylesheets>
+            <URL value="@../main/application.css" />
+          </stylesheets>
+        </Button>
+        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2147483647" GridPane.rowIndex="0">
+          <children>
+            <TableView fx:id="showsTable" layoutX="0.0" layoutY="0.0" opacity="0.75" prefHeight="200.0" prefWidth="650.0">
+              <columns>
+                <TableColumn fx:id="showNameColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="Show" />
+                <TableColumn fx:id="episodeNameColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="128.0" text="Episode name" />
+                <TableColumn fx:id="seasonColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="55.0" text="Season" />
+                <TableColumn fx:id="episodeColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="54.0" text="Episode" />
+                <TableColumn fx:id="statusColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="121.0" text="Status" />
+                <TableColumn fx:id="dateColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="78.0" text="Date" />
+                <TableColumn fx:id="watchedColumn" prefWidth="75.0" text="Watched" />
+              </columns>
+              <contextMenu>
+                <ContextMenu>
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#markEpisodeAsWatched" text="Mark as Watched" />
+                              <MenuItem mnemonicParsing="false" onAction="#showSeriesInfo" text="Series Info" />
+                    <MenuItem mnemonicParsing="false" onAction="#unmarkEpisodeAsWatched" text="Remove this show" />
+                    <MenuItem mnemonicParsing="false" onAction="#recommendShow" text="Recommend this show" />
+                  </items>
+                </ContextMenu>
+              </contextMenu>
+            </TableView>
+          </children>
+        </Pane>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="248.0" minHeight="10.0" prefHeight="155.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="221.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+  <stylesheets>
+    <URL value="@../main/application.css" />
+  </stylesheets>
+  <top>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#updateDatabaseWithNewSeries" text="Update Database" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateDatabaseRatings" text="Update Ratings" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>

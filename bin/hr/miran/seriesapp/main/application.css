@@ -1,0 +1,40 @@
+.buttonFirst {
+	/*-fx-background-color:linear-gradient(#33CC33, #e8f5fc);*/
+	-fx-background-color:#90EE90;
+	-fx-opacity: 0.95;
+	-fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-color: #33CC33;
+}
+
+.buttonSecond {
+	/*-fx-background-color:linear-gradient(#3399FF, #e8f5fc);*/
+	-fx-background-color:#00BFFF;
+	-fx-opacity: 0.95;
+	-fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-color: #3399FF;
+}
+
+.buttonThird {
+	-fx-background-color:linear-gradient(#e8f5fc, #CC3333);
+	-fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-color: #CC3333;
+}
+
+.buttonFourth {
+	-fx-background-color:linear-gradient(#e8f5fc, #993399);
+	-fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-color: #993399;
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-max-height: 300;
+}
+
+.hyperlink {
+    -fx-border-color: transparent;
+}

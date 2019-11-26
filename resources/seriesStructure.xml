@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mirrorpath>/api/<apikey>/
+|---- mirrors.xml
+|---- languages.xml
+|
+|---- series/
+|     |---- <seriesid>/
+|           |---- <language>.xml  (Base Series Record)
+|           |---- banners.xml  (All banners related to this series)
+|           |---- actors.xml  (All actors related to this series)
+|           |
+|           |---- all/
+|           |     |---- <language>.xml  (Full Series Record)
+|           |     |---- <language>.zip  (Zipped version of Full Series Record, banners.xml and actors.xml)
+|           |
+|           |---- default/  (sorts using the default ordering method)
+|           |     |---- <season#>/<episode#>/
+|           |           |---- <language>.xml  (Base Episode Record)
+|           |
+|           |---- dvd/  (sorts using the dvd ordering method)
+|           |     |---- <season#>/<episode#>/
+|           |           |---- <language>.xml  (Base Episode Record)
+|           |
+|           |---- absolute/  (sorts using the absolute ordering method)
+|           |     |---- <absolute#>/
+|           |       |---- <language>.xml  (Base Episode Record)
+|
+|---- episodes
+|     |---- <episodeid>/  (will return en.xml by default)
+|           |---- <language>.xml  (Base Episode Record)
+|
+|---- (Updates)
+      |---- updates_<timeframe>.xml
+      |---- updates_<timeframe>.zip

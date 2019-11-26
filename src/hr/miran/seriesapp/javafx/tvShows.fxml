@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.miran.seriesapp.controller.TvShowsController">
+  <center>
+    <Pane prefHeight="-1.0" prefWidth="-1.0">
+      <children>
+        <TableView fx:id="showsTable" layoutX="0.0" layoutY="0.0" prefHeight="440.0" prefWidth="650.0">
+          <columns>
+            <TableColumn fx:id="showNameColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="203.0" text="Show" />
+            <TableColumn fx:id="seasonColumn" maxWidth="5000.0" minWidth="0.0" prefWidth="56.0" text="Seasons" />
+            <TableColumn fx:id="statusColumn" maxWidth="5000.0" minWidth="0.0" prefWidth="97.0" text="Status" />
+            <TableColumn fx:id="dateColumn" maxWidth="5000.0" minWidth="0.0" prefWidth="96.0" text="First Aired" />
+            <TableColumn fx:id="watchedColumn" maxWidth="5000.0" minWidth="10.0" prefWidth="83.0" text="Watching" />
+                  <TableColumn fx:id="recomCountColumn" minWidth="0.0" prefWidth="50.0" text="Recom" />
+                  <TableColumn fx:id="ratingColumn" prefWidth="62.0" text="Rating" />
+          </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#showSeriesInfo2" text="Series Info" />
+                        <MenuItem mnemonicParsing="false" onAction="#addShowToWatchlist" text="Add to watchlist" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+        </TableView>
+      </children>
+    </Pane>
+  </center>
+   <top>
+      <Pane prefHeight="139.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+            <Label layoutX="17.0" layoutY="56.0" text="Filter by: " />
+            <ComboBox fx:id="comboGenre" disable="true" layoutX="216.0" layoutY="52.0" prefHeight="25.0" prefWidth="99.0" />
+            <Label layoutX="18.0" layoutY="94.0" text="Year:" />
+            <TextField fx:id="yearFrom" layoutX="55.0" layoutY="90.0" prefHeight="25.0" prefWidth="60.0" />
+            <Label layoutX="119.0" layoutY="94.0" text=" - " />
+            <TextField fx:id="yearTo" layoutX="134.0" layoutY="90.0" prefHeight="25.0" prefWidth="60.0" />
+            <ComboBox fx:id="comboFilterBy" layoutX="70.0" layoutY="52.0" prefHeight="25.0" prefWidth="128.0" />
+            <Button layoutX="587.0" layoutY="14.0" mnemonicParsing="false" onAction="#showTvShows" text="Filter" />
+            <Label layoutX="424.0" layoutY="56.0" text="Country:" />
+            <ComboBox fx:id="comboCountry" layoutX="480.0" layoutY="52.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

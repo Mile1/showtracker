@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<database>
+	
+	<!--
+	<url>jdbc:mysql://85.10.205.173:3306/showtracker?useSSL=false</url>
+	<user>showtracker</user>
+	<password>Patak12(</password>
+	-->
+	<!--
+	<url>jdbc:mysql://46.101.100.247:3306/showtracker?useSSL=false</url>
+	<user>root</user>
+	<password>Patak128</password>
+	-->
+
+	<!--	
+	<user_database>
+		<url>jdbc:mysql://85.10.205.173:3306/showtracker?useSSL=false</url>
+		<user>showtracker</user>
+		<password>Patak12(</password>	
+	</user_database>
+	-->
+	<!--
+	<user_database>
+		<url>jdbc:mysql://46.101.100.247:3306/showtracker?useSSL=false</url>
+		<user>root</user>
+		<password>Patak128</password>	
+	</user_database>
+	-->
+	
+	<!--user_database>
+		<url>jdbc:mysql://127.0.0.1:3306/showtracker?useSSL=false</url>
+		<user>root</user>
+		<password></password>	
+	</user_database-->
+	
+	<user_database>
+		<url>jdbc:mysql://45.77.198.97:3306/showtracker?useSSL=false</url>
+		<user>showuser</user>
+		<password>Patak12#</password>	
+	</user_database>
+	
+	<apiKey>26B8BE6FAC673EE0</apiKey>
+</database>
+		
